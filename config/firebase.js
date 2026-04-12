@@ -1,0 +1,12 @@
+const admin = require("firebase-admin");
+
+const initFirebase = () => {
+  const decoded = Buffer.from(process.env.FB_KEY, "base64").toString("utf-8");
+  const serviceAccount = JSON.parse(decoded);
+
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+};
+
+module.exports = { admin, initFirebase };
